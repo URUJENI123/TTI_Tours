@@ -42,6 +42,17 @@
   .slick-next {
     display: none !important;
   }
+  /* Each slide takes full width on mobile with no overflow bleed */
+  .slick-slide {
+    padding: 0 !important;
+  }
+  .slick-list {
+    overflow: hidden !important;
+  }
+  /* Extra bottom padding so dots don't overlap the card */
+  .slider-container .slick-slider {
+    padding-bottom: 48px !important;
+  }
 }
 
 html {

@@ -17,9 +17,9 @@ export default function CoffeeTourPage() {
         </div>
         <div className="relative z-10 px-gutter max-w-container-max mx-auto w-full">
           <div className="max-w-2xl text-white">
-            <span className="font-label-caps text-label-caps bg-teal text-white px-3 py-1 rounded-full mb-6 inline-block">
+            {/* <span className="font-label-caps text-label-caps bg-teal text-white px-3 py-1 rounded-full mb-6 inline-block">
               Agrotourism Discovery
-            </span>
+            </span> */}
             <h1 className="font-headline-xl text-headline-xl mb-6">Ibirunga Coffee: From Crop to Cup</h1>
             <p className="font-body-lg text-body-lg mb-8 opacity-90">
               Journey through the mist-covered foothills of Kinigi. Discover the meticulous craft behind

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Navbar from '@/shared/components/layout/Navbar'
-import Footer from '@/shared/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'TTI Tours | Premium Rwanda Expeditions',
@@ -27,9 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-background text-on-surface font-body-md">
-        <Navbar />
-        <main className="pt-[72px]">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   )
