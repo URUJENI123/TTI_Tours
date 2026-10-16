@@ -1,157 +1,96 @@
 const vehicles = [
-  { id: 'R4D-4Q5', route: 'Kigali Basa → Gorilla Sector', status: 'Active', statusOk: true },
-  { id: 'R4D-7PA', route: 'Nyungwe Forrest → Canopy', status: 'Active', statusOk: true },
-  { id: 'R5D-144C', route: '→ Kigali Depot · In Maintenance', status: 'In Maintenance', statusOk: false },
+  { id: 'R4D-4Q5', route: 'Kigali Base → Gorilla Sector', status: 'Gorilla Sector', ok: true },
+  { id: 'R4D-7PA', route: 'Nyungwe Forrest → Canopy', status: 'Foreste Sector', ok: true },
+  { id: 'R5D-144C', route: '→ Kigali Depot', status: 'In Maintenance', ok: false },
 ]
 
 const lodges = [
-  {
-    name: 'Singita Kwitonda Lodge',
-    location: 'Kingi Volcanoes National Park',
-    rooms: '4 Suites',
-    status: 'Confirmed',
-    statusOk: true,
-  },
-  {
-    name: "One&Only Nyungwe",
-    location: 'Uwinka Tea Estate',
-    rooms: '2 Forest Villas',
-    status: 'Confirmed',
-    statusOk: true,
-  },
-  {
-    name: 'Lake Kivu Serena Hotel',
-    location: 'Rubavu Waterfront',
-    rooms: '6 Rooms',
-    status: 'On Hold',
-    statusOk: false,
-  },
+  { name: 'Singita Kwitonda Lodge', location: 'Kinigi Volcanoes National Park', rooms: '4 Suites', status: 'Confirmed', ok: true },
+  { name: "One&Only Nyungwe", location: 'Uwinka Tea Estate', rooms: '2 Forest Villas', status: 'Confirmed', ok: true },
+  { name: 'Lake Kivu Serena Hotel', location: 'Rubavu Waterfront', rooms: '6 Rooms', status: 'On Hold', ok: false },
 ]
 
 export default function LogisticsPanel() {
   return (
     <div className="grid md:grid-cols-2 gap-4">
+
       {/* Fleet */}
-      <div className="bg-white rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
-        <div className="px-4 pt-4 pb-3 border-b border-outline-variant/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-label-caps text-label-caps text-on-surface-variant">
-                LOGISTICS &amp; TRANSPORT
-              </p>
-              <h3 className="font-semibold text-navy text-sm mt-0.5">
-                Fleet Readiness (Custom 4x4)
-              </h3>
-            </div>
-            <div className="text-right">
-              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">
-                80% Utilization
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="px-4 py-3 space-y-3">
-          {/* Progress bar */}
+      <div className="bg-white rounded-xl border border-outline-variant/20 overflow-hidden">
+        <div className="px-4 pt-3 pb-2 border-b border-outline-variant/20 flex items-center justify-between">
           <div>
-            <div className="flex justify-between text-xs text-on-surface-variant mb-1">
+            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">LOGISTICS &amp; TRANSPORT</p>
+            <p className="text-sm font-bold text-navy">Fleet Readiness (Custom 4x4)</p>
+          </div>
+          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">80% Utilization</span>
+        </div>
+        <div className="px-4 py-3 space-y-3">
+          {/* Progress */}
+          <div>
+            <div className="flex justify-between text-[10px] text-on-surface-variant mb-1">
               <span>Deployed Safari Land Cruisers</span>
-              <span className="font-semibold">8 of 10 Active</span>
+              <span className="font-bold text-navy">8 of 10 Active</span>
             </div>
-            <div className="h-2 bg-surface-container rounded-full overflow-hidden">
-              <div className="h-full w-4/5 bg-teal rounded-full" />
+            <div className="h-1.5 bg-surface-container rounded-full overflow-hidden">
+              <div className="h-full bg-teal rounded-full" style={{ width: '80%' }} />
             </div>
           </div>
-
-          {/* Vehicle list */}
-          <div className="space-y-2">
+          {/* Vehicles */}
+          <div className="space-y-1.5">
             {vehicles.map((v, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 text-xs p-2 rounded-lg bg-surface-container-low"
-              >
-                <span
-                  className={`material-symbols-outlined text-base ${
-                    v.statusOk ? 'text-emerald-500' : 'text-amber-500'
-                  }`}
-                >
-                  {v.statusOk ? 'local_taxi' : 'build'}
+              <div key={i} className="flex items-center gap-2 text-[10px] p-2 rounded-lg bg-surface-container-low">
+                <span className={`material-symbols-outlined text-sm ${v.ok ? 'text-emerald-500' : 'text-amber-500'}`}>
+                  {v.ok ? 'directions_car' : 'build'}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-navy">{v.id}</p>
+                  <p className="font-bold text-navy">{v.id}</p>
                   <p className="text-on-surface-variant truncate">{v.route}</p>
                 </div>
-                <span
-                  className={`shrink-0 text-xs font-bold px-2 py-0.5 rounded-full ${
-                    v.statusOk
-                      ? 'bg-emerald-50 text-emerald-700'
-                      : 'bg-amber-50 text-amber-700'
-                  }`}
-                >
-                  {v.statusOk ? 'Gorilla Sector' : 'In Maintenance'}
+                <span className={`shrink-0 font-bold px-1.5 py-0.5 rounded text-[9px] ${v.ok ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                  {v.status}
                 </span>
               </div>
             ))}
           </div>
-
-          <div className="pt-1 flex items-center justify-between">
-            <span className="text-xs text-on-surface-variant">
-              Driver Safety Sign-offs: 3 Pending
-            </span>
-            <button className="text-xs font-semibold text-teal hover:underline flex items-center gap-1">
-              Manage Fleet
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          <div className="flex items-center justify-between pt-1">
+            <span className="text-[10px] text-on-surface-variant">Fleet Driver Sign-offs: 3 Pending</span>
+            <button className="text-[10px] font-bold text-teal flex items-center gap-0.5 hover:underline">
+              Manage Fleet <span className="material-symbols-outlined text-xs">chevron_right</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Partner Lodges */}
-      <div className="bg-white rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
-        <div className="px-4 pt-4 pb-3 border-b border-outline-variant/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-label-caps text-label-caps text-on-surface-variant">
-                PARTNER LODGES
-              </p>
-              <h3 className="font-semibold text-navy text-sm mt-0.5">
-                Boutique Room Allotments
-              </h3>
-            </div>
-            <div className="text-right">
-              <p className="text-xs font-bold text-navy">12 Suites</p>
-              <p className="text-xs text-on-surface-variant">Stocked</p>
-            </div>
+      <div className="bg-white rounded-xl border border-outline-variant/20 overflow-hidden">
+        <div className="px-4 pt-3 pb-2 border-b border-outline-variant/20 flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide">PARTNER LODGES</p>
+            <p className="text-sm font-bold text-navy">Boutique Room Allotments</p>
+          </div>
+          <div className="text-right">
+            <p className="text-sm font-bold text-navy">12 Suites</p>
+            <p className="text-[10px] text-on-surface-variant">Stocked</p>
           </div>
         </div>
-
         <div className="px-4 py-3 space-y-2">
           {lodges.map((l, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 p-2.5 rounded-lg bg-surface-container-low"
-            >
-              <div className="w-8 h-8 rounded-lg bg-teal/10 flex items-center justify-center shrink-0">
+            <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-surface-container-low">
+              <div className="w-7 h-7 rounded-lg bg-teal/10 flex items-center justify-center shrink-0">
                 <span className="material-symbols-outlined text-sm text-teal">hotel</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-xs text-navy truncate">{l.name}</p>
-                <p className="text-xs text-on-surface-variant truncate">{l.location}</p>
+                <p className="text-[11px] font-bold text-navy truncate">{l.name}</p>
+                <p className="text-[10px] text-on-surface-variant truncate">{l.location}</p>
               </div>
               <div className="text-right shrink-0">
-                <p className="text-xs font-bold text-navy">{l.rooms}</p>
-                <span
-                  className={`text-xs font-semibold ${
-                    l.statusOk ? 'text-emerald-600' : 'text-amber-600'
-                  }`}
-                >
-                  {l.status}
-                </span>
+                <p className="text-[11px] font-bold text-navy">{l.rooms}</p>
+                <p className={`text-[10px] font-semibold ${l.ok ? 'text-emerald-600' : 'text-amber-600'}`}>{l.status}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
+
     </div>
   )
 }

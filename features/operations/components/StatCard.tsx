@@ -9,59 +9,45 @@ interface StatCardProps {
   footer?: React.ReactNode
 }
 
-export default function StatCard({
-  label,
-  value,
-  subValue,
-  icon,
-  trend,
-  trendUp,
-  badge,
-  footer,
-}: StatCardProps) {
+export default function StatCard({ label, value, subValue, icon, trend, trendUp, badge, footer }: StatCardProps) {
   const badgeColors = {
-    red: 'bg-red-100 text-red-700',
-    green: 'bg-emerald-100 text-emerald-700',
-    yellow: 'bg-amber-100 text-amber-700',
-    blue: 'bg-sky-100 text-sky-700',
+    red:    'bg-red-50 text-red-700 border border-red-200',
+    green:  'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    yellow: 'bg-amber-50 text-amber-700 border border-amber-200',
+    blue:   'bg-sky-50 text-sky-700 border border-sky-200',
   }
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border border-outline-variant/20 flex flex-col gap-2">
-      <div className="flex items-start justify-between">
-        <span className="font-label-caps text-label-caps text-on-surface-variant">{label}</span>
-        <span className="material-symbols-outlined text-xl text-on-surface-variant/60">{icon}</span>
+    <div className="bg-white rounded-lg border border-outline-variant/30 p-3 flex flex-col gap-1">
+      {/* Label + icon */}
+      <div className="flex items-start justify-between gap-1">
+        <span className="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider leading-tight">{label}</span>
+        <span className="material-symbols-outlined text-sm text-on-surface-variant/40 shrink-0">{icon}</span>
       </div>
 
-      <div className="flex items-end gap-2 flex-wrap">
-        <span className="font-headline-lg text-headline-lg text-navy leading-none">{value}</span>
-        {subValue && (
-          <span className="text-xs text-on-surface-variant mb-0.5">{subValue}</span>
-        )}
+      {/* Value */}
+      <div className="flex items-baseline gap-1 flex-wrap">
+        <span className="text-2xl font-bold text-navy leading-none">{value}</span>
+        {subValue && <span className="text-[10px] text-on-surface-variant">{subValue}</span>}
       </div>
 
+      {/* Trend */}
       {trend && (
-        <span
-          className={`text-xs font-medium flex items-center gap-0.5 ${
-            trendUp ? 'text-emerald-600' : 'text-red-500'
-          }`}
-        >
-          <span className="material-symbols-outlined text-sm">
-            {trendUp ? 'trending_up' : 'trending_down'}
-          </span>
+        <span className={`text-[10px] flex items-center gap-0.5 font-medium ${trendUp ? 'text-emerald-600' : 'text-red-500'}`}>
+          <span className="material-symbols-outlined text-xs">{trendUp ? 'trending_up' : 'trending_down'}</span>
           {trend}
         </span>
       )}
 
+      {/* Badge */}
       {badge && (
-        <span
-          className={`inline-flex items-center self-start px-2 py-0.5 rounded text-xs font-semibold ${badgeColors[badge.color]}`}
-        >
-          {badge.label}
-        </span>
+        <span className={`self-start text-[9px] font-bold px-1.5 py-0.5 rounded ${badgeColors[badge.color]}`}>{badge.label}</span>
       )}
 
-      {footer && <div className="mt-1 pt-2 border-t border-outline-variant/20 text-xs text-on-surface-variant">{footer}</div>}
+      {/* Footer */}
+      {footer && (
+        <div className="pt-1 mt-0.5 border-t border-outline-variant/15 text-[10px] text-on-surface-variant">{footer}</div>
+      )}
     </div>
   )
 }
